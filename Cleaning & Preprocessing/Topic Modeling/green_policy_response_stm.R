@@ -60,3 +60,48 @@
  # Note: These summary statistics show the actual count of speeches in the UK 
  # filtered corpus (that is speeches which mention climate change and its ill
  # effects to )
+
+
+
+
+## From Elisa - Not sure what this is, but it was in the most recent commit: 
+
+‎Cleaning & Preprocessing/Topic Modeling/green_policy_response_stm.R
++6
+-2
+Original file line number	Diff line number	Diff line change
+@@ -158,7 +158,7 @@ rownames(UK_doc_metadata) <- docnames(UK_dfm_speeches_corpus)
+
+# Now run STM with the proper metadata: 
+set.seed(123)
+UK_stm_model <- stm(UK_dfm_speeches_corpus, K = 20, max.em.its = 10, data = UK_doc_metadata)
+UK_stm_model <- stm(UK_dfm_speeches_corpus, K = 20, max.em.its = 15, data = UK_doc_metadata)
+
+# Plot STM: 
+plot(UK_stm_model)
+@@ -185,6 +185,8 @@ topic_summary <- topic_summary[order(topic_summary$Probability, decreasing = TRU
+rownames(topic_summary) <- NULL
+view(topic_summary)
+
+write_csv(topic_summary, "green_policy_text_stm.csv")
+################################################################################
+
+# Right, so having looked at the text itself, we're moving on to the set agenda
+@@ -257,7 +259,7 @@ rownames(UK_agenda_metadata) <- docnames(UK_dfm_agenda_corpus)
+
+# Now run STM with the proper metadata: 
+set.seed(123)
+UK_agenda_stm_model <- stm(UK_dfm_agenda_corpus, K = 20, max.em.its = 10, data = UK_agenda_metadata)
+UK_agenda_stm_model <- stm(UK_dfm_agenda_corpus, K = 20, max.em.its = 15, data = UK_agenda_metadata)
+
+# Plot STM: 
+plot(UK_agenda_stm_model)
+@@ -284,6 +286,8 @@ agenda_topic_summary <- agenda_topic_summary[order(agenda_topic_summary$Probabil
+rownames(agenda_topic_summary) <- NULL
+View(agenda_topic_summary)
+
+write_csv(agenda_topic_summary, "green_policy_agenda_stm.csv")
+# Key Findings:
+
+# Energy and Climate Change Dominance: Topic 17 (9.7% probability) is the most prevalent 
+
