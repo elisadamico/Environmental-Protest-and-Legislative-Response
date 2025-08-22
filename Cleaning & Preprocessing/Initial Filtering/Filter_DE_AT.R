@@ -8,11 +8,11 @@ library(stringr)  # For string matching
 library(furrr)  # For parallel processing
 
 # Load data & filter date to 2000-2020
-df <- readRDS("~/Downloads/Corp_Bundestag_V2.rds")
-df$date <- as.Date(df$date)
-df <- df[df$date >= "2000-01-01" & df$date <= "2020-12-31", ]
+de_df <- readRDS("~/Downloads/Corp_Bundestag_V2.rds")
+de_df$date <- as.Date(de_df$date)
+de_df <- df[de_df$date >= "2000-01-01" & de_df$date <= "2020-12-31", ]
 
-keywords <- c( 
+de_keywords <- c( 
   
   # General Climate Change and Environment
   "klimawandel", "globale erwärmung", "klimakrise", "klimanotstand", "klimazusammenbruch", 
@@ -109,40 +109,41 @@ keywords <- c(
 )
 
 # Word and phrase filtering function
-contains_keyword <- function(text, keywords) {
-  str_detect(text, regex(str_c(keywords, collapse = "|"), ignore_case = TRUE))
+contains_de_keyword <- function(text, de_keywords) {
+  str_detect(text, regex(str_c(de_keywords, collapse = "|"), ignore_case = TRUE))
 }
 
 # Run filtering in parallel and keep only matching rows
-df$match <- future_map_lgl(df$text, ~contains_keyword(.x, keywords))
-filtered_df <- df[df$match == TRUE, ]
-filtered_df$match <- NULL
+de_df$match <- future_map_lgl(de_df$text, ~contains_de_keyword(.x, de_keywords))
+filtered_de_df <- de_df[de_df$match == TRUE, ]
+filtered_de_df$match <- NULL
 
-View(filtered_df)
+View(filtered_de_df)
 
 # Export filtered data
-saveRDS(filtered_df, "filtered_DE.rds")
+saveRDS(filtered_de_df, "filtered_DE.rds")
 
-# Now Austria... 
+################################################################################
+## AUSTRIA ##  
 
-# Load data & filter date to 2000-2020
-df1 <- readRDS("~/Downloads/Corp_Nationalrat_V2.rds")
-df1$date <- as.Date(df1$date)
-df1 <- df1[df1$date >= "2000-01-01" & df1$date <= "2020-12-31", ]
+# Load Austria data & filter date to 2000-2020
+at_df <- readRDS("~/Downloads/Corp_Nationalrat_V2.rds")
+at_df$date <- as.Date(at_df$date)
+at_df <- at_df[at_df$date >= "2000-01-01" & at_df$date <= "2020-12-31", ]
 
 # Parallel processing
 plan(multisession, workers = availableCores() - 1)
 
 # Word and phrase filtering function
-contains_keyword <- function(text, keywords) {
+contains_de_keyword <- function(text, keywords) {
   str_detect(text, regex(str_c(keywords, collapse = "|"), ignore_case = TRUE))
 }
 
 # Run filtering in parallel and keep only matching rows
-df1$match <- future_map_lgl(df1$text, ~contains_keyword(.x, keywords))
-filtered_df1 <- df1[df1$match == TRUE, ]
-filtered_df1$match <- NULL
+at_df$match <- future_map_lgl(at_df$text, ~contains_de_keyword(.x, de_keywords))
+filtered_at_df <- at_df[at_df$match == TRUE, ]
+filtered_at_df$match <- NULL
 
 # Export filtered data
-saveRDS(filtered_df1, "filtered_AT.rds")
+saveRDS(filtered_at_df, "filtered_AT.rds")
 
