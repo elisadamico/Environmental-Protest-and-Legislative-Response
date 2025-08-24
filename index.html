@@ -13,6 +13,10 @@
     h1 {
         font-size: 1.5em;
     }
+    h2 {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
     .checkbox-list {
         background: white;
         padding: 20px;
@@ -31,25 +35,38 @@
 
 <h1>Country Checklist</h1>
 <div class="checkbox-list">
-    <label><input type="checkbox" id="austria"> Austria</label>
-    <label><input type="checkbox" id="czech"> Czech Republic</label>
-    <label><input type="checkbox" id="germany"> Germany</label>
-    <label><input type="checkbox" id="denmark"> Denmark</label>
-    <label><input type="checkbox" id="netherlands"> Netherlands</label>
-    <label><input type="checkbox" id="newzealand"> New Zealand</label>
-    <label><input type="checkbox" id="spain"> Spain</label>
-    <label><input type="checkbox" id="sweden"> Sweden</label>
-    <label><input type="checkbox" id="uk"> United Kingdom</label>
-    <hr>
-    <label><input type="checkbox" id="prefiltered"> Pre-Filtered</label>
-    <label><input type="checkbox" id="finalized"> Finalized</label>
+    
+    <h2>Pre-Filtered</h2>
+    <label><input type="checkbox" id="pf_austria"> Austria</label>
+    <label><input type="checkbox" id="pf_czech"> Czech Republic</label>
+    <label><input type="checkbox" id="pf_germany"> Germany</label>
+    <label><input type="checkbox" id="pf_denmark"> Denmark</label>
+    <label><input type="checkbox" id="pf_netherlands"> Netherlands</label>
+    <label><input type="checkbox" id="pf_newzealand"> New Zealand</label>
+    <label><input type="checkbox" id="pf_spain"> Spain</label>
+    <label><input type="checkbox" id="pf_sweden"> Sweden</label>
+    <label><input type="checkbox" id="pf_uk"> United Kingdom</label>
+
+    <h2>Finalized</h2>
+    <label><input type="checkbox" id="fin_austria"> Austria</label>
+    <label><input type="checkbox" id="fin_czech"> Czech Republic</label>
+    <label><input type="checkbox" id="fin_germany"> Germany</label>
+    <label><input type="checkbox" id="fin_denmark"> Denmark</label>
+    <label><input type="checkbox" id="fin_netherlands"> Netherlands</label>
+    <label><input type="checkbox" id="fin_newzealand"> New Zealand</label>
+    <label><input type="checkbox" id="fin_spain"> Spain</label>
+    <label><input type="checkbox" id="fin_sweden"> Sweden</label>
+    <label><input type="checkbox" id="fin_uk"> United Kingdom</label>
+
 </div>
 
 <script>
-    // List of checkbox IDs
+    // List of checkbox IDs for both lists
     const checkboxIds = [
-        "austria", "czech", "germany", "denmark", "netherlands", 
-        "newzealand", "spain", "sweden", "uk", "prefiltered", "finalized"
+        "pf_austria", "pf_czech", "pf_germany", "pf_denmark", "pf_netherlands", 
+        "pf_newzealand", "pf_spain", "pf_sweden", "pf_uk",
+        "fin_austria", "fin_czech", "fin_germany", "fin_denmark", "fin_netherlands", 
+        "fin_newzealand", "fin_spain", "fin_sweden", "fin_uk"
     ];
 
     // Load saved states
