@@ -31,19 +31,38 @@
 
 <h1>Country Checklist</h1>
 <div class="checkbox-list">
-    <label><input type="checkbox"> Austria</label>
-    <label><input type="checkbox"> Czech Republic</label>
-    <label><input type="checkbox"> Germany</label>
-    <label><input type="checkbox"> Denmark</label>
-    <label><input type="checkbox"> Netherlands</label>
-    <label><input type="checkbox"> New Zealand</label>
-    <label><input type="checkbox"> Spain</label>
-    <label><input type="checkbox"> Sweden</label>
-    <label><input type="checkbox"> United Kingdom</label>
+    <label><input type="checkbox" id="austria"> Austria</label>
+    <label><input type="checkbox" id="czech"> Czech Republic</label>
+    <label><input type="checkbox" id="germany"> Germany</label>
+    <label><input type="checkbox" id="denmark"> Denmark</label>
+    <label><input type="checkbox" id="netherlands"> Netherlands</label>
+    <label><input type="checkbox" id="newzealand"> New Zealand</label>
+    <label><input type="checkbox" id="spain"> Spain</label>
+    <label><input type="checkbox" id="sweden"> Sweden</label>
+    <label><input type="checkbox" id="uk"> United Kingdom</label>
     <hr>
-    <label><input type="checkbox"> Pre-Filtered</label>
-    <label><input type="checkbox"> Finalized</label>
+    <label><input type="checkbox" id="prefiltered"> Pre-Filtered</label>
+    <label><input type="checkbox" id="finalized"> Finalized</label>
 </div>
+
+<script>
+    // List of checkbox IDs
+    const checkboxIds = [
+        "austria", "czech", "germany", "denmark", "netherlands", 
+        "newzealand", "spain", "sweden", "uk", "prefiltered", "finalized"
+    ];
+
+    // Load saved states
+    checkboxIds.forEach(id => {
+        const saved = localStorage.getItem(id);
+        if (saved === "true") {
+            document.getElementById(id).checked = true;
+        }
+        document.getElementById(id).addEventListener("change", function() {
+            localStorage.setItem(id, this.checked);
+        });
+    });
+</script>
 
 </body>
 </html>
